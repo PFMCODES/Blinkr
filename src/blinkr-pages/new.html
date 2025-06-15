@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New tab</title>
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/styles/new.css">
+</head>
+<body>
+    <div id="main">
+        <div id="search-logo">
+            <img id="logo" src="../../assets/images/logo.png">
+            <h1>Search</h1>
+        </div><br>
+        <div class="input" align="center">
+            <img src="../../assets/images/search.svg" alt="" align="center"><input id="input" placeholder="Search or type a URL" align="center" type="text">
+        </div>
+        <div class="shortcuts">
+            <button onclick="openPopup()" id="create-shortcut">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M12 6V18" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </button>
+        </div>
+    </div>
+    <div id="shorcut-creator">
+        <div class="popup-content">
+            <h2>Create Shortcut</h2>
+            <input type="text" placeholder="Name" id="shortcutName"><br><br>
+            <input type="url" placeholder="URL" id="shortcutUrl"><br><br>
+            <button onclick="closePopup()">Close</button>
+            <button id="done" align="center"><svg fill="#ffffff" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M760 380.4l-61.6-61.6-263.2 263.1-109.6-109.5L264 534l171.2 171.2L760 380.4z"></path></g></svg></button>
+        </div>
+    </div>
+    <script src="../../assets/scripts/index.js"></script>
+    <script>
+    function openPopup() {
+        document.getElementById('shortcut-creator').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('shortcut-creator').style.display = 'none';
+    }
+
+    document.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            const para = document.getElementById('input').value.trim();
+            if (isValidURL(para)) {
+                // Add protocol if missing
+                const url = para.startsWith("http://") || para.startsWith("https://") ? para : "http://" + para;
+                window.location.href = url;
+            } else {
+                window.location.href = `https://pfmcodes.onrender.com/apps/blinkr-search/search/?q=${encodeURIComponent(para)}`;
+            }
+        }
+    });
+
+    function isValidURL(input) {
+        try {
+            new URL(input);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    document.getElementById('done').addEventListener('click', () => {
+        closePopup();
+
+        const link = document.getElementById('shortcutUrl').value.trim();
+        const name = document.getElementById('shortcutName').value.trim();
+
+        if (!link || !name) return alert("Both fields are required!");
+
+        const shortcuts = document.getElementsByClassName("shortcuts")[0];
+
+        const shortcut = document.createElement('button');
+        shortcut.classList.add('shortcut-btn');
+
+        const shortcutLink = document.createElement('a');
+        shortcutLink.href = link;
+        shortcutLink.target = '_blank';
+
+        const shortcutImage = document.createElement('img');
+        shortcutImage.src = `https://icons.duckduckgo.com/ip3/${new URL(link).hostname}.ico`;
+        shortcutImage.alt = name;
+        shortcutImage.width = 32;
+
+        const shortcutName = document.createElement('p');
+        shortcutName.innerText = name;
+
+        shortcutLink.appendChild(shortcutImage);
+        shortcut.appendChild(shortcutLink);
+        shortcut.appendChild(shortcutName);
+        shortcuts.appendChild(shortcut);
+    });
+</script>
+
+</body>
+</html>

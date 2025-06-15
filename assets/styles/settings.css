@@ -1,0 +1,44 @@
+* {
+    font-family:'Segoe UI', Tahoma, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+body {
+    background-color: #111827;
+    color: white;
+}
+
+nav {
+    display: flex;
+    font-size: 14px;
+    flex-direction: column;
+    font-weight: 900;
+    max-width: 266px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+button {
+    margin-top: 3px;
+    width: 100%;
+    user-select: none;
+    background: #111827;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    margin-right: 4px;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 10px 16px 10px 23px;
+}
+button:hover {
+    background-color: #444;
+}
+
+div.button.selected button {
+    background-color: #A816F2;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New tab</title>
+    <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/styles/search.css">
+</head>
+<body>
+    <div id="search-logo">
+        <img id="logo" src="../../assets/images/logo.png">
+        <h1>Search</h1>
+    </div><br>
+    <div class="input" align="center">
+        <img src="../../assets/images/search.svg" alt="" align="center"><input id="input" placeholder="Search or type a URL" align="center" type="text">
+    </div>
+    <script src="../../assets/scripts/index.js"></script>
+    <script>
+        const para = document.getElementById('input').value
+        document.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                if (isValidURL(para)) {
+                    window.location.href = para
+                } else {
+                    window.location.href = `http://localhost:3737/search?q=${para}`
+                }
+            }
+        })
+        function isValidURL(input) {
+            try {
+                new URL(input);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "name": "blinkr",
+  "version": "1.0.0",
+  "description": "Blinkr is a next-generation web browser built for speed, simplicity, and full user control.",
+  "main": "assets/scripts/entry.js",
+  "scripts": {
+    "start": "electron .",
+    "commit": "git add . && git commit -m \".\" && git push origin main",
+    "build": "electron-packager . Blinkr --platform=win32 --arch=x64 --out=dist --overwrite",
+    "build:all": "electron-builder --win --linux"
+  },
+  "build": {
+    "appId": "com.pfmocdes.blinkr",
+    "productName": "Blinkr",
+    "files": [
+      "assets/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "src/**/*",
+      "LICENSE"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "assets/images/logo.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/images/logo.png"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PFMCODES/Blinkr.git"
+  },
+  "keywords": [],
+  "author": "PFMCODES",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PFMCODES/Blinkr/issues"
+  },
+  "homepage": "https://github.com/PFMCODES/Blinkr#readme",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cheerio": "^1.1.0",
+    "https": "^1.0.0",
+    "os": "^0.1.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12"
+  }
+}

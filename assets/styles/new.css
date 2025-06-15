@@ -1,0 +1,94 @@
+@import url("./main.css");
+
+@font-face {
+    font-family: 'Lulo Clean', sans-serif;
+    src: url("../../assets/fonts/Lulo\ Clean\ W01\ One\ Bold.ttf");
+}
+
+body {
+    background-color: #1F2937;
+    color: #f1f1f1;
+    font-family: 'Lulo Clean', sans-serif;
+    font-weight: 900;
+}
+
+#logo {
+    width: 100px;
+}
+
+#search-logo {
+    display: flex;
+    align-items: center;      /* vertically centers image + text */
+    justify-content: center;  /* centers the whole row horizontally */
+    gap: 10px;                /* adds space between logo and text */
+    margin-top: 100px;
+}
+
+#search-logo h1 {
+    font-size: 80px;
+}
+
+input {
+    border: none;
+    padding-left: 50px;
+    width: 700px;
+    height: 50px;
+    outline: none;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 50px;
+    background-color: #181f29;
+}
+
+.input {
+    background-color: #181f29;
+    border-radius: 50px;
+    max-height: 50px;
+    width: 700px;
+    margin-left: 250px;
+    padding-left: 0;
+}
+
+.input img {
+    width: 30px;
+    margin-top: 8px;
+    margin-left: 8px;
+    position: absolute;
+}
+
+
+#shorcut-creator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.popup-content {
+    background-color: #1f2937;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px #000000aa;
+    min-width: 300px;
+    color: #fff;
+}
+
+button {
+    background-color: #181f29;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+}
+
+button:hover, input:hover {
+    background-color: #373f49;
+}

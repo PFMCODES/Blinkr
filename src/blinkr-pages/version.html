@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blinkr - Version Info</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg-dark: #1e1e1e;
+      --bg-light: #ffffff;
+      --text-dark: #ffffff;
+      --text-light: #000000;
+      --accent: #7f3fff;
+    }
+
+    img {
+        user-select: none;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-box {
+      background: #2e2e2e;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .info {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1><img src="../assets/images/logo.png" style="width: 50px;"> Blinkr Browser</h1>
+  <div class="info-box">
+    <div class="info">Version: <span class="accent" id="version">Loading...</span></div>
+    <div class="info">Engine: <span class="accent" id="engine">Loading...</span></div>
+    <div class="info">Platform: <span class="accent" id="platform">Loading...</span></div>
+  </div>
+  <footer>
+    &copy; 2025 PFMCODES. All rights reserved.
+  </footer>
+
+  <script>
+    // If using preload to expose electronAPI
+    if (window.electronAPI) {
+      window.electronAPI.getAppInfo().then((info) => {
+        document.getElementById("version").textContent = info.version;
+        document.getElementById("engine").textContent = info.engine;
+        document.getElementById("platform").textContent = info.platform;
+      });
+    } else {
+      // fallback (hardcoded)
+      document.getElementById("version").textContent = "1.0.0";
+      document.getElementById("engine").textContent = "Chromium";
+      document.getElementById("platform").textContent = navigator.platform;
+    }
+  </script>
+</body>
+</html>

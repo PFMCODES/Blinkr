@@ -1,0 +1,20 @@
+body.dark-mode {
+    --body-text: #fff;
+    --body-svg: #fff;
+    --body-bg: #1F2937;
+    --nav-bg: #1F2937;
+    --nav-border: #1F2937;
+    --urlBar: #181f29;
+}
+body.light-mode {
+    --body-text: #000;
+    --body-svg: #1F2937;
+    --body-bg: #f1f1f1;
+    --nav-bg: #fff;
+    --urlBar: #efe6fb;
+    --nav-border: #f1f1f1;
+}
+
+img, button {
+    user-select: none;
+}
