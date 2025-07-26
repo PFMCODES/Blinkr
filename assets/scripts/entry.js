@@ -1,3 +1,9 @@
+/* ---------------------------------------------------------------------------------------------
+* Copyright (c) 2025 Blinkr Team, PFMCODES Org. All rights reserved.
+* Licensed under the MIT License. See License(File) in the project root for license information.
+*-----------------------------------------------------------------------------------------------*/
+
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const os = require('os');
@@ -29,7 +35,7 @@ function createWindow() {
   const indexPath = isDev
     ? path.join(__dirname, '../../src/index.html')
     : 'src/index.html'
-
+  win.webContents.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
   win.loadFile(indexPath);
 
   win.once('ready-to-show', () => {
@@ -62,6 +68,10 @@ ipcMain.on('webview-go-forward', (event) => {
 
 ipcMain.on('webview-reload', (event) => {
   event.sender.send('trigger-webview-reload');
+});
+
+ipcMain.on('webview-stop-reload', (event) => {
+  event.sender.send('trigger-webview-stop');
 });
 
 ipcMain.handle('get-app-info', () => {

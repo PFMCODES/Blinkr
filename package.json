@@ -1,16 +1,16 @@
 {
   "name": "blinkr",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "description": "Blinkr is a next-generation web browser built for speed, simplicity, and full user control.",
   "main": "assets/scripts/entry.js",
   "scripts": {
-    "start": "electron .",
-    "commit": "git add . && git commit -m \".\" && git push origin main",
-    "build": "electron-packager . Blinkr --platform=win32 --arch=x64 --out=dist --overwrite",
-    "build:all": "electron-builder --win --linux"
+    "start": "electronmon .",
+    "build": "electron-builder --win --x64",
+  "build:release": "npm run build",
+  "build:test": "electron-builder --dir"
   },
   "build": {
-    "appId": "com.pfmocdes.blinkr",
+    "appId": "com.pfmcodes.blinkr",
     "productName": "Blinkr",
     "files": [
       "assets/**/*",
@@ -23,8 +23,13 @@
       "buildResources": "assets"
     },
     "win": {
-      "target": "squirrel",
+      "target": "nsis",
       "icon": "assets/images/logo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
     },
     "linux": {
       "target": "AppImage",
@@ -45,6 +50,8 @@
   "dependencies": {
     "axios": "^1.9.0",
     "cheerio": "^1.1.0",
+    "electronmon": "^2.0.3",
+    "firebase": "^11.9.1",
     "https": "^1.0.0",
     "os": "^0.1.2",
     "path": "^0.12.7"

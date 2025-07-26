@@ -1,20 +1,37 @@
+/* ---------------------------------------------------------------------------------------------
+* Copyright (c) 2025 Blinkr Team, PFMCODES Org. All rights reserved.
+* Licensed under the MIT License. See License(File) in the project root for license information.
+*-----------------------------------------------------------------------------------------------*/
+
 body.dark-mode {
+    --new-tab-bg: #1F2937;
     --body-text: #fff;
     --body-svg: #fff;
     --body-bg: #1F2937;
     --nav-bg: #1F2937;
     --nav-border: #1F2937;
     --urlBar: #181f29;
+    --primary: #7302FE;
 }
 body.light-mode {
+    --new-tab-bg: #fefefe;
     --body-text: #000;
     --body-svg: #1F2937;
     --body-bg: #f1f1f1;
     --nav-bg: #fff;
-    --urlBar: #efe6fb;
+    --urlBar: #d5b4fd;
     --nav-border: #f1f1f1;
+    --primary: #7302FE;
 }
 
 img, button {
     user-select: none;
+    border: none;
+}
+
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease-in-out;
 }

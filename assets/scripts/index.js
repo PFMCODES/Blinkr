@@ -1,8 +1,21 @@
+/* ---------------------------------------------------------------------------------------------
+* Copyright (c) 2025 Blinkr Team, PFMCODES Org. All rights reserved.
+* Licensed under the MIT License. See License(File) in the project root for license information.
+*-----------------------------------------------------------------------------------------------*/
+
 const webview = document.getElementById("webview");
 const urlBar = document.getElementById("urlBar");
 const moreBtn = document.getElementById("more");
 const favicon = document.getElementById("favicon");
 const moreMenu = document.getElementById("more-menu");
+
+
+const reloadBtn = document.getElementById('refresh');
+let Xicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="white" width="26" height="26"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z" fill="white"></path></svg>`;
+
+const reloadSVG = `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 3V8M21 8H16M21 8L18 5.29168C16.4077 3.86656 14.3051 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.2832 21 19.8675 18.008 20.777 14" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`
 
 window.addEventListener("dom-ready", () => {
     document.getElementById("new-window").addEventListener('click', () => {
@@ -87,6 +100,7 @@ window.addEventListener("DOMContentLoaded", () => {
         moreMenu.classList.toggle("show");
     });
 
+
     // Optional: close menu when clicking outside
     window.addEventListener("click", (e) => {
         if (!moreBtn.contains(e.target) && !moreMenu.contains(e.target)) {
@@ -137,7 +151,12 @@ window.addEventListener("DOMContentLoaded", () => {
         });
 
         document.getElementById("refresh").addEventListener("click", () => {
-            window.electronAPI.reload();
+            if (reloadBtn.innerHTML === reloadSVG) {
+              window.electronAPI.reload();
+            }
+            else if (reloadBtn.innerHTML === Xicon) {
+              window.electronAPI.stopReload();
+            }
         });
         document.getElementById("settings").addEventListener("click", () => {
             document.getElementById("webview").src = "./blinkr-pages/settings.html";
@@ -178,14 +197,11 @@ document.body.appendChild(overlay);
 
 // Show for 0.01 seconds on start loading
 webview.addEventListener("did-start-loading", () => {
-  overlay.style.display = "block";
-  setTimeout(() => {
-    overlay.style.display = "none";
-  }, 9); // 10 milliseconds
+  reloadBtn.innerHTML = Xicon
 });
 
 webview.addEventListener("did-stop-loading", () => {
-    // Optional: hide loading indicator
+    reloadBtn.innerHTML = reloadSVG
 });
 
 webview.addEventListener("did-fail-load", (event) => {
@@ -299,7 +315,12 @@ async function getFaviconURL(siteUrl) {
      return "../assets/images/logo.png"
   }
   else {
-    return await window.electronAPI.getFaviconURL(siteUrl);
+    try {
+      return await window.electronAPI.getFaviconURL(siteUrl);
+    }
+    catch {
+      return "../assets/images/default-favicon.svg";
+    }
   }
 }
 
@@ -313,7 +334,12 @@ document.addEventListener("keydown", (e) => {
     window.electronAPI.reload()
   }
   if (e.shiftKey && e.ctrlKey && e.key.toLowerCase() === "i") {
-    e.preventDefault()
-    return;
+    webview.openDevTools();
+  }
+  if (e.shiftKey && e.ctrlKey && e.key.toLowerCase() === "j") {
+    webview.openDevTools();
+  }
+  if (e.key === "F12") {
+    webview.openDevTools();
   }
 });

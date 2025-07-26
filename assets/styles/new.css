@@ -1,3 +1,8 @@
+/* ---------------------------------------------------------------------------------------------
+* Copyright (c) 2025 Blinkr Team, PFMCODES Org. All rights reserved.
+* Licensed under the MIT License. See License(File) in the project root for license information.
+*-----------------------------------------------------------------------------------------------*/
+
 @import url("./main.css");
 
 @font-face {
@@ -6,8 +11,8 @@
 }
 
 body {
-    background-color: #1F2937;
-    color: #f1f1f1;
+    background-color: var(--new-tab-bg);
+    color: var(--nav-border);
     font-family: 'Lulo Clean', sans-serif;
     font-weight: 900;
 }
@@ -28,6 +33,10 @@ body {
     font-size: 80px;
 }
 
+input::selection {
+    background-color: rgba(255, 255, 255, 0.5);
+}   
+
 input {
     border: none;
     padding-left: 50px;
@@ -35,13 +44,17 @@ input {
     height: 50px;
     outline: none;
     font-size: 18px;
-    color: #fff;
+    color: var(--nav-border);
     border-radius: 50px;
-    background-color: #181f29;
+    background-color: #7302FE;
+}
+
+input::placeholder {
+    color: var(--nav-border);
 }
 
 .input {
-    background-color: #181f29;
+    background-color: #7302FE;
     border-radius: 50px;
     max-height: 50px;
     width: 700px;
@@ -51,6 +64,7 @@ input {
 
 .input img {
     width: 30px;
+    height: 30px;
     margin-top: 8px;
     margin-left: 8px;
     position: absolute;
@@ -78,11 +92,10 @@ input {
     border-radius: 20px;
     box-shadow: 0 0 20px #000000aa;
     min-width: 300px;
-    color: #fff;
 }
 
 button {
-    background-color: #181f29;
+    background-color: var(--urlBar);
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -90,5 +103,5 @@ button {
 }
 
 button:hover, input:hover {
-    background-color: #373f49;
+    background-color: #5501bd;
 }

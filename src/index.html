@@ -1,56 +1,62 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Blinkr</title>
-        <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
-        <link rel="stylesheet" href="../assets/styles/index.css">
-    </head>
-    <body>
-        <section class="wab">
-            <nav>
-                <button id="back">
-                    <svg width="40" height="38" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.23225 17.2322C0.255936 18.2085 0.255936 19.7915 1.23225 20.7678L17.1421 36.6777C18.1185 37.654 19.7014 37.654 20.6777 36.6777C21.654 35.7014 21.654 34.1184 20.6777 33.1421L6.53555 19L20.6777 4.85786C21.654 3.88155 21.654 2.29864 20.6777 1.32233C19.7014 0.34602 18.1185 0.34602 17.1421 1.32233L1.23225 17.2322ZM39.0638 16.5L3.00001 16.5V21.5L39.0638 21.5V16.5Z" fill="#f1f1f1"/>
-                    </svg>
-                </button>
-                <button id="forward">
-                    <svg class="flip-icon" width="40" height="38" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1.23225 17.2322C0.255936 18.2085 0.255936 19.7915 1.23225 20.7678L17.1421 36.6777C18.1185 37.654 19.7014 37.654 20.6777 36.6777C21.654 35.7014 21.654 34.1184 20.6777 33.1421L6.53555 19L20.6777 4.85786C21.654 3.88155 21.654 2.29864 20.6777 1.32233C19.7014 0.34602 18.1185 0.34602 17.1421 1.32233L1.23225 17.2322ZM39.0638 16.5L3.00001 16.5V21.5L39.0638 21.5V16.5Z" fill="#f1f1f1"/>
-                    </svg>
-                </button>
-                <button id="refresh">
-                    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 3V8M21 8H16M21 8L18 5.29168C16.4077 3.86656 14.3051 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.2832 21 19.8675 18.008 20.777 14" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <div class="gradient-border">
-                    <span style="display: flex; flex-direction: row; width: 100%;">
-                        <div style="background-color: #444; padding: 2px; border-radius: 25px; align-items: center; justify-content: center; display: flex; position: absolute; width: 30px; height: 30px;" class="favicon"><img style="width: 25px; height: 25px;" id="favicon"></div>
-                        <input style="display: flex; width: 100%; padding-left: 40px;" type="text" class="content" id="urlBar" placeholder="Search or type a URL">
-                    </span>
-                </div>
-                <button id="more">
-                    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.75 5C13.75 5.9665 12.9665 6.75 12 6.75C11.0335 6.75 10.25 5.9665 10.25 5C10.25 4.0335 11.0335 3.25 12 3.25C12.9665 3.25 13.75 4.0335 13.75 5ZM13.75 19C13.75 19.9665 12.9665 20.75 12 20.75C11.0335 20.75 10.25 19.9665 10.25 19C10.25 18.0335 11.0335 17.25 12 17.25C12.9665 17.25 13.75 18.0335 13.75 19ZM12 13.75C12.9665 13.75 13.75 12.9665 13.75 12C13.75 11.0335 12.9665 10.25 12 10.25C11.0335 10.25 10.25 11.0335 10.25 12C10.25 12.9665 11.0335 13.75 12 13.75Z" fill="#fffffff"/>
-                    </svg>
-                </button>
-            </nav>
-        </section>
-
-        <div class="more-menu" align="center" id="more-menu">
-            <div>
-                <button id="new-window" align="center">New Window</button>
-                <button id="settings" align="center">Settings</button>
-                <button id="help" align="center">Help</button>
-                <button id="about" align="center">About</button>
-                <button id="exit" align="center">Exit</button>
+<!--
+---------------------------------------------------------------------------------------------
+* Copyright (c) 2025 Blinkr Team, PFMCODES Org. All rights reserved.
+* Licensed under the MIT License. See License(File) in the project root for license information.
+*-----------------------------------------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkr</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+    <link rel="stylesheet" href="../assets/styles/index.css">
+</head>
+<body>
+    <section class="wab">
+        <nav>
+            <button id="back">
+                <svg width="40" height="38" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.23225 17.2322C0.255936 18.2085 0.255936 19.7915 1.23225 20.7678L17.1421 36.6777C18.1185 37.654 19.7014 37.654 20.6777 36.6777C21.654 35.7014 21.654 34.1184 20.6777 33.1421L6.53555 19L20.6777 4.85786C21.654 3.88155 21.654 2.29864 20.6777 1.32233C19.7014 0.34602 18.1185 0.34602 17.1421 1.32233L1.23225 17.2322ZM39.0638 16.5L3.00001 16.5V21.5L39.0638 21.5V16.5Z" fill="#f1f1f1"/>
+                </svg>
+            </button>
+            <button id="forward">
+                <svg class="flip-icon" width="40" height="38" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.23225 17.2322C0.255936 18.2085 0.255936 19.7915 1.23225 20.7678L17.1421 36.6777C18.1185 37.654 19.7014 37.654 20.6777 36.6777C21.654 35.7014 21.654 34.1184 20.6777 33.1421L6.53555 19L20.6777 4.85786C21.654 3.88155 21.654 2.29864 20.6777 1.32233C19.7014 0.34602 18.1185 0.34602 17.1421 1.32233L1.23225 17.2322ZM39.0638 16.5L3.00001 16.5V21.5L39.0638 21.5V16.5Z" fill="#f1f1f1"/>
+                </svg>
+            </button>
+            <button id="refresh">
+                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 3V8M21 8H16M21 8L18 5.29168C16.4077 3.86656 14.3051 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.2832 21 19.8675 18.008 20.777 14" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="gradient-border">
+                <span style="display: flex; flex-direction: row; width: 100%;">
+                    <div style="background-color: #0000; padding: 2px; border-radius: 25px; align-items: center; justify-content: center; display: flex; position: absolute; width: 30px; height: 30px;" class="favicon"><img style="width: 25px; height: 25px;" id="favicon"></div>
+                    <input style="display: flex; width: 100%; padding-left: 40px;" type="text" class="content" id="urlBar" placeholder="Search or type a URL">
+                </span>
             </div>
-        </div>
-        <div id="container"><webview id="webview" allowpopups webpreferences="nativeWindowOpen, contextIsolation=no, nodeIntegration=yes"
-  class="webview" src="./blinkr-pages/new.html"></webview></div>
+            <button id="more">
+                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.75 5C13.75 5.9665 12.9665 6.75 12 6.75C11.0335 6.75 10.25 5.9665 10.25 5C10.25 4.0335 11.0335 3.25 12 3.25C12.9665 3.25 13.75 4.0335 13.75 5ZM13.75 19C13.75 19.9665 12.9665 20.75 12 20.75C11.0335 20.75 10.25 19.9665 10.25 19C10.25 18.0335 11.0335 17.25 12 17.25C12.9665 17.25 13.75 18.0335 13.75 19ZM12 13.75C12.9665 13.75 13.75 12.9665 13.75 12C13.75 11.0335 12.9665 10.25 12 10.25C11.0335 10.25 10.25 11.0335 10.25 12C10.25 12.9665 11.0335 13.75 12 13.75Z" fill="#fffffff"/>
+                </svg>
+            </button>
+        </nav>
+    </section>
 
-        <script src="../assets/scripts/index.js"></script>
-    </body>
-    </html>
+    <div class="more-menu" align="center" id="more-menu">
+        <div>
+            <button id="new-window" align="center">New Window</button>
+            <button id="settings" align="center">Settings</button>
+            <button id="help" align="center">Help</button>
+            <button id="about" align="center">About</button>
+            <button id="exit" align="center">Exit</button>
+        </div>
+    </div>
+    <div id="container"><webview id="webview" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" allowpopups webpreferences="nativeWindowOpen, contextIsolation=no, nodeIntegration=yes"
+class="webview" src="./blinkr-pages/new.html"  webpreferences="contextIsolation=yes, nativeWindowOpen=yes"></webview></div>
+
+    <script src="../assets/scripts/index.js"></script>
+</body>
+</html>
