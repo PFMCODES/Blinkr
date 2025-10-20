@@ -63,31 +63,31 @@ window.addEventListener("dom-ready", () => {
 
     // Buttons - only run if `window.electronAPI` exists
     if (window.electronAPI) {
-        document.getElementById("exit").addEventListener("click", () => {
-            window.electronAPI.quitApp();
-        });
+      document.getElementById("exit").addEventListener("click", () => {
+        window.electronAPI.quitApp();
+      });
 
-        document.getElementById("back").addEventListener("click", () => {
-            window.electronAPI.goBack();
-        });
+      document.getElementById("back").addEventListener("click", () => {
+        window.electronAPI.goBack();
+      });
 
-        document.getElementById("forward").addEventListener("click", () => {
-            window.electronAPI.goForward();
-        });
+      document.getElementById("forward").addEventListener("click", () => {
+        window.electronAPI.goForward();
+      });
 
-        document.getElementById("refresh").addEventListener("click", () => {
-            window.electronAPI.reload();
-        });
-        document.getElementById("settings").addEventListener("click", () => {
-            document.getElementById("webview").src = "./blinkr-pages/settings.html";
-        });
+      document.getElementById("refresh").addEventListener("click", () => {
+        window.electronAPI.reload();
+      });
 
-        // Handle actual webview actions from main process
-        window.electronAPI.onGoBack(() => webview.goBack());
-        window.electronAPI.onGoForward(() => webview.goForward());
-        window.electronAPI.onReload(() => webview.reload());
-    } else {
-        console.error("❌ window.electronAPI is not defined. Check preload.js and webPreferences.");
+      document.getElementById("settings").addEventListener("click", () => {
+        document.getElementById("webview").src = "./blinkr-pages/settings.html";
+      });
+
+      // Listen for navigation commands from main process
+      window.electronAPI.onGoBack(() => webview.goBack());
+      window.electronAPI.onGoForward(() => webview.goForward());
+      window.electronAPI.onReload(() => webview.reload());
+      window.electronAPI.onStopReload(() => webview.stop());
     }
 });
 

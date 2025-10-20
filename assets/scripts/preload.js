@@ -8,33 +8,33 @@ const { existsSync } = require('fs');
 const https = require("https");
 
 contextBridge.exposeInMainWorld('electronAPI', {
+  // ---- App Control ----
   getAppInfo: () => ipcRenderer.invoke('get-app-info'),
   quitApp: () => ipcRenderer.send('app-quit'),
-
-  // Navigation actions for BrowserView
-  goBack: () => ipcRenderer.send('go-back'),
-  goForward: () => ipcRenderer.send('go-forward'),
-  reload: () => ipcRenderer.send('reload'),
-  stopReload: () => ipcRenderer.send('stop'),
-
-  // Create new browser window
   createWindow: () => ipcRenderer.send('create-window'),
 
-  // Listen for main-process-driven triggers (optional)
-  onGoBack: (callback) => ipcRenderer.on('trigger-go-back', callback),
-  onGoForward: (callback) => ipcRenderer.on('trigger-go-forward', callback),
-  onReload: (callback) => ipcRenderer.on('trigger-reload', callback),
+  // ---- Navigation (Renderer → Main) ----
+  goBack: () => ipcRenderer.send('webview-go-back'),
+  goForward: () => ipcRenderer.send('webview-go-forward'),
+  reload: () => ipcRenderer.send('webview-reload'),
+  stopReload: () => ipcRenderer.send('webview-stop-reload'),
 
-  // Favicon fetching from main
+  // ---- Navigation (Main → Renderer) ----
+  onGoBack: (callback) => ipcRenderer.on('trigger-webview-go-back', callback),
+  onGoForward: (callback) => ipcRenderer.on('trigger-webview-go-forward', callback),
+  onReload: (callback) => ipcRenderer.on('trigger-webview-reload', callback),
+  onStopReload: (callback) => ipcRenderer.on('trigger-webview-stop', callback),
+
+  // ---- Favicon fetching ----
   getFaviconURL: (siteUrl) => ipcRenderer.invoke('get-favicon', siteUrl),
 });
 
-// Expose `fs.existsSync`
+// ---- Expose fs.existsSync ----
 contextBridge.exposeInMainWorld('fs', {
   exists: (path) => existsSync(path),
 });
 
-// Favicon fetcher from Google (renderer side)
+// ---- Optional: Favicon fetcher (Google) ----
 contextBridge.exposeInMainWorld("blinkrAPI", {
   getFavicon: (domain) =>
     new Promise((resolve) => {
