@@ -343,3 +343,25 @@ document.addEventListener("keydown", (e) => {
     webview.openDevTools();
   }
 });
+document.addEventListener('selectionchange', () => {
+    const selection = document.getSelection();
+    if (!selection.rangeCount) return;
+
+    const range = selection.getRangeAt(0);
+    const container = range.startContainer.parentElement;
+
+    if (!container) return;
+
+    // Get the computed color of the selected text
+    const color = window.getComputedStyle(container).color;
+
+    // Convert to RGB string for comparison
+    const rgbPurple = 'rgb(115, 2, 254)'; // #7302FE in RGB
+
+    // Set CSS variable for ::selection dynamically
+    if (color === rgbPurple) {
+        document.documentElement.style.setProperty('--selection-bg', 'rgba(255, 255, 255, 0.5)');
+    } else {
+        document.documentElement.style.setProperty('--selection-bg', 'var(--primary, #7302FE)');
+    }
+});

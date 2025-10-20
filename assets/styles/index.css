@@ -54,6 +54,17 @@ body, html {
     border: none;
 }
 
+.more-menu-icons svg {
+    max-width: 30px;
+}
+
+.more-menu-icons.nw svg {
+    max-width: 25px;
+}
+.more-menu-icons.help svg {
+    max-width: 36px;
+}
+
 /* Navigation bar styling */
 nav {
     width: 100vw;
@@ -172,7 +183,7 @@ nav button svg {
     flex-direction: column;
     width: 160px;
     position: absolute;
-    top: 60px; /* adjust depending on nav height */
+    top: 50px; /* adjust depending on nav height */
     right: 10px; /* adjust to align near the 'more' button */
     background-color: var(--body-bg);
     border-radius: 10px;
@@ -185,13 +196,13 @@ nav button svg {
     opacity: 1;
 }
 
-.more-menu button {
+.more-menu button span {
     background: transparent;
     border: none;
     color: var(--body-text);
     padding: 10px 20px;
-    text-align: left;
-    width: 100%;
+    justify-content:baseline;
+    /* width: 100%; */
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -208,4 +219,8 @@ button#refresh svg path {
 .more-menu button:hover {
     background-color: var(--primary);
     color: #fff;
+}
+
+::selection {
+    background-color: var(--primary);
 }
