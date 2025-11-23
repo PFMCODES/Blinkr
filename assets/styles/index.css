@@ -5,6 +5,7 @@
 
 @import url("./main.css");
 
+
 /* General body and html styles */
 * {
     color: #fff;
@@ -26,6 +27,8 @@ html, body {
 
 /* WAB Section */
 .wab {
+    display: none;
+    opacity: 0;
     flex: 0 0 56px; /* fixed height */
 }
 
@@ -54,16 +57,25 @@ body, html {
     border: none;
 }
 
-.more-menu-icons svg {
-    max-width: 30px;
+/* Codicons (icon font) */
+.more-menu-icons i {
+    font-size: 20px !important;      /* works for icon fonts */
+    color: var(--body-text) !important;
 }
 
-.more-menu-icons.nw svg {
-    max-width: 25px;
+/* Lucide (SVG icons) */
+.more-menu-icons i svg {
+    width: 20px !important;          /* sets SVG size */
+    height: 20px !important;
+    color: var(--body-svg) !important; /* affects stroke if using currentColor */
 }
-.more-menu-icons.help svg {
-    max-width: 36px;
+
+/* Optional: ensure Lucide paths follow stroke color */
+.more-menu-icons i svg path {
+    stroke: currentColor !important;
+    fill: none !important;           /* remove fills if you want outline-only */
 }
+
 
 /* Navigation bar styling */
 nav {
@@ -177,8 +189,7 @@ nav button svg {
 }
 
 .more-menu {
-    opacity: 0;
-    display: flex;
+    display: none;
     transition: all 0.2s ease-in-out;
     flex-direction: column;
     width: 160px;
@@ -193,14 +204,16 @@ nav button svg {
 }
 
 .more-menu.show {
-    opacity: 1;
+    display: flex;
 }
 
 .more-menu button span {
+    font-size: 15px;
+    text-align: start;
     background: transparent;
     border: none;
     color: var(--body-text);
-    padding: 10px 20px;
+    padding: 10px 0px;
     justify-content:baseline;
     /* width: 100%; */
     cursor: pointer;
@@ -210,6 +223,9 @@ nav button svg {
 
 svg path {
     fill: var(--body-svg);
+}
+i {
+    color: var(--body-svg);
 }
 button#refresh svg path {
     stroke: var(--body-svg);
@@ -221,6 +237,69 @@ button#refresh svg path {
     color: #fff;
 }
 
+.more-menu button {
+    width: 100%;
+    background-color: transparent;
+}
+
 ::selection {
+    background-color: var(--primary);
+}
+.more-menu button {
+    display: flex;           /* make button a flex container */
+    align-items: center;     /* vertically align icon and text */
+    gap: 8px;                /* space between icon and text */
+    padding: 10px 12px;      /* adjust padding as needed */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.more-menu button span.more-menu-icons {
+    display: flex;
+    align-items: center;     /* vertically center icon itself */
+    justify-content: center; /* optional, keeps icon centered in its span */
+}
+
+.loading-screen {
+    opacity: 1;
+    display: flex;
+    background-color: var(--body-bg);
+    position: absolute;
+    z-index: 999999999999999999999999999999;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-logo {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-bar-body {
+    border: 3px solid var(--primary);
+    width: 70vw;
+    margin-left: 10vh;
+    padding: 2px;
+    border-radius: 100px;
+}
+
+.loading-bar-fill {
+    max-width: 70vw;
+    width: 100%;
+    height: 50px;
+    border-radius: 100px;
     background-color: var(--primary);
 }
